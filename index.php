@@ -22,8 +22,8 @@ $trees = [
     ['node_id' => 5, 'parent_id' => null, 'title' => 'Node 5'],
 ];
 
-$tree = TreeFactory::get('node');
-$tree->load($trees);
+$tree = TreeFactory::get('node')->load($trees);
+
 echo '<pre>';
 echo json_encode($tree) . '<br /><br /><br />';
 print_r($tree->toArray());

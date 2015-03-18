@@ -19,11 +19,6 @@ class TreeNodes implements TreesInterface, \JsonSerializable {
      */
     private $trees;
 
-    /**
-     * @var TreeInterface[]
-     */
-    private $treesParent;
-
 
     /**
      * @param array $trees
@@ -32,28 +27,28 @@ class TreeNodes implements TreesInterface, \JsonSerializable {
      */
     public function load(array $trees)
     {
-        $this->trees = $this->treesParent = [];
+        $this->trees = $treesParent = [];
         foreach ($trees as $tree)
         {
             $parentId = $tree['parent_id'];
             $id = $tree['node_id'];
             $name = $tree['title'];
 
-            if ($parentId && array_key_exists($parentId, $this->treesParent))
+            if ($parentId && array_key_exists($parentId, $treesParent))
             {
-                $parent = $this->treesParent[$parentId];
+                $parent = $treesParent[$parentId];
                 $node = new TreeNode($id, $name);
                 $parent->setParent($node);
-                $this->treesParent[$id] = $node;
+                $treesParent[$id] = $node;
             }
             elseif (!$parentId) {
-                $this->treesParent[$id] = $this->trees[$id] = new TreeNode($id, $name);
+                $treesParent[$id] = $this->trees[$id] = new TreeNode($id, $name);
             } else {
                 throw new \Exception("Undefined parent node '{$name}'");
             }
 
         }
-        $this->treesParent = [];
+        unset($treesParent);
 
         return $this;
     }
