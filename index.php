@@ -5,6 +5,7 @@
  * Date: 18.03.15
  * Time: 19:03
  */
+ 
 
 spl_autoload_register(function ($name) {
     $name = str_replace('\\', '/', $name);
