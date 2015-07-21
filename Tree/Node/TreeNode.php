@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: vir-mir
- * Date: 18.03.15
- * Time: 19:10
- */
 
 namespace Tree\Node;
 
